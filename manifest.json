@@ -39,7 +39,7 @@
         }
     ],
     "start_url": "/minimum-pwa/index.html",
-    "scope": "/",
+    "scope": "/minimum-pwa/",
     "display": "standalone",
     "background_color": "#cccccc",
     "theme_color": "#00adff"

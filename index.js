@@ -3,7 +3,7 @@
 // Service worker setup.
 let serviceWorkerRegistration;
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/minimum-pwa/sw.js', { scope: '/' })
+    navigator.serviceWorker.register('/minimum-pwa/sw.js')
         .then(function (registration) {
             serviceWorkerRegistration = registration;
             console.log('PWA: Service Worker Registered');
