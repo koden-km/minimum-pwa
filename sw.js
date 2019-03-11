@@ -1,8 +1,8 @@
-const cacheName = 'min-pwa-1';
+const CACHE_NAME = 'min-pwa-1';
 
 self.addEventListener('install', e => {
   e.waitUntil(
-    caches.open(cacheName).then(cache => {
+    caches.open(CACHE_NAME).then(cache => {
       return cache.addAll([
         '/minimum-pwa/',
         '/minimum-pwa/index.html',
@@ -14,12 +14,23 @@ self.addEventListener('install', e => {
 });
 
 self.addEventListener('activate', event => {
-  event.waitUntil(self.clients.claim());
+  // Delete old caches...
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName)
+          }
+        })
+      )
+    })
+  )
 });
 
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.open(cacheName)
+    caches.open(CACHE_NAME)
       .then(cache => cache.match(event.request, {ignoreSearch: true}))
       .then(response => {
       return response || fetch(event.request);
