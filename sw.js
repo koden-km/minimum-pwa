@@ -4,9 +4,9 @@ self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
       return cache.addAll([
-        '/minimum-pwa/',
-        '/minimum-pwa/index.html',
-        '/minimum-pwa/styles/main.css',
+        './',
+        './index.html',
+        './styles/main.css',
       ])
       .then(() => self.skipWaiting());
     })
